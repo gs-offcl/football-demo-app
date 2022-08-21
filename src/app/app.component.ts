@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'football-demo-app';
+  environmentName = '';
+  environmentUrl = '';
+  
+  constructor() {
+    this.environmentName = environment.environmentName;
+    this.environmentUrl = environment.apiUrl;
+  }
 }
