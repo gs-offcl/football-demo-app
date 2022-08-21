@@ -1,0 +1,35 @@
+<br><br>
+
+<div class="row">
+    <div class="col-md-offset-4 col-md-4"> 
+        <form [formGroup]="form" #searchInfo (ngSubmit)="searchForm(searchInfo)">
+            <table>
+                <tr>
+                    <td> <input type="text" formControlName="country" placeholder="Enter Country" class="form-control"> </td>
+                    <td> <input type="text" formControlName="league" placeholder="Enter League" class="form-control"> </td>
+                    <td> <input type="text" formControlName="team" placeholder="Enter Team" class="form-control"> </td>
+                    <td> <button class="btn btn-primary hidden-xs">Search</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<br><br>
+
+<div class="row">
+  
+    <div class="col-md-offset-4 col-md-4" *ngIf="data"> 
+		<ul class="list-group">
+			<li class="list-group-item"><b> Country ID & Name: </b> {{
+				data.country }}</li>
+			<li class="list-group-item"><b> League ID & Name: </b> {{
+				data.league }}</li>
+			<li class="list-group-item"><b> Team ID & Name: </b> {{
+				data.team }}</li>
+			<li class="list-group-item"><b> Overall League Position: </b> {{
+				data.overallPosition }}</li>
+		</ul>
+    </div>
+
+</div>
