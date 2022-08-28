@@ -26,5 +26,20 @@
         ]
       }
     }
-  ]
+  ],
+  "dataGroups": [
+      {
+        "name": "football-league-api",
+        "urls": [
+          "/assets/i18n/**",
+          "/**"
+        ],
+        "cacheConfig": {
+          "strategy": "freshness",
+          "maxSize": 20,
+          "maxAge": "12h",
+          "timeout": "5s"
+        }
+      }
+   ]
 }

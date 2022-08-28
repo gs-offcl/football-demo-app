@@ -4,7 +4,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { TeamStanding } from '../classes/team.standing';
 import { FootballService } from '../services/football.service';
 
-
 @Component({
   selector: 'app-show-data',
   templateUrl: './show-data.component.html',
@@ -19,7 +18,7 @@ export class ShowDataComponent implements OnInit {
   constructor(private footballService : FootballService) { }
 
   ngOnInit() {
-//    this.getData(this.teamStanding);
+     // this.getData(this.teamStanding);
   }
 
   form = new FormGroup({
@@ -28,21 +27,20 @@ export class ShowDataComponent implements OnInit {
     team : new FormControl()
   });
 
-  getData(teamStanding : TeamStanding)
-  {
+  getData(teamStanding : TeamStanding){
       this.footballService.getData(teamStanding).subscribe(
         response => {
+		  console.log("teamstanding response: "+response);
           this.data = response;
         },
         error => {
-          console.log("error while getting teamstanding Details");
-          this.data = "";
+          console.log("error while getting teamstanding details: "+error);
+          this.data = error;
         }
       );
   }
 
-  searchForm(searchInfo : any)
-  {
+  searchForm(searchInfo : any){
 	if(this.Country != null)
        this.teamStanding.country = this.Country.value;
     if(this.League != null)
@@ -53,18 +51,15 @@ export class ShowDataComponent implements OnInit {
      this.getData(this.teamStanding);
   }
 
-  get Country()
-  {
+  get Country(){
     return this.form.get('country');
   }
 
-  get League()
-  {
+  get League(){
     return this.form.get('league');
   }
   
-  get Team()
-  {
+  get Team(){
     return this.form.get('team');
   }
 }
