@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { TeamStanding } from '../classes/team.standing';
 
 @Injectable({
@@ -11,17 +11,15 @@ export class FootballService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getData(teamStanding : TeamStanding)
-  {
-    let params = new HttpParams();
-    
-    let headers= new HttpHeaders()
-    .set('X-API-KEY', 'suresh123');
+  getData(teamStanding : TeamStanding){
+	
+    let params = new HttpParams()
+                    .set('teamName', teamStanding.team)
+	                .set('countryName', teamStanding.country)
+	                .set('leagueName', teamStanding.league);
+	
+	console.log(params);                
 
-    params = params.append('teamName', teamStanding.team);
-    params = params.append('countryName', teamStanding.country);
-    params = params.append('leagueName', teamStanding.league);
-    
-    return this.httpClient.get(this.baseUrl,  { params: params, headers:  headers });
+    return this.httpClient.get(this.baseUrl, { params } );
   }
 }

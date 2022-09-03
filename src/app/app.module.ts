@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShowDataComponent } from './show-data/show-data.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HeaderInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { environment } from '../environments/environment';
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [],
+  providers: [
+        [ { provide: HTTP_INTERCEPTORS, useClass: 
+              HeaderInterceptor, multi: true } ]
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

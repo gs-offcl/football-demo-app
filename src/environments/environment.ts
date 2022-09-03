@@ -5,7 +5,9 @@
 export const environment = {
   production: false,
   environmentName: 'development',
-  apiUrl: 'http://localhost:4200'
+  apiUrl: 'http://localhost:4200',
+  headerName: 'X-API-KEY',
+  token: 'suresh123'
 };
 
 /*
